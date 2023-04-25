@@ -1,4 +1,4 @@
-import { printBadge, printBadges } from "./index"
+import { badge, badges } from "./core"
 
 declare global {
   interface Console {
@@ -8,9 +8,9 @@ declare global {
 }
 
 Object.defineProperty(console, "badge", {
-  get: () => printBadge.bind(console),
+  get: () => badge.bind(console),
 })
 
 Object.defineProperty(console, "badges", {
-  get: () => printBadges.bind(console),
+  get: () => badges.bind(console),
 })
