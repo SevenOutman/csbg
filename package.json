@@ -21,7 +21,7 @@
     "./install": {
       "types": "./dist/install.d.ts",
       "require": "./dist/install.js",
-      "import": "./dist/index.mjs"
+      "import": "./dist/install.mjs"
     }
   },
   "main": "./dist/index.js",
