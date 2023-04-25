@@ -3,9 +3,9 @@
   "version": "0.1.0",
   "description": "Print badges in the console",
   "bugs": {
-    "url": "https://github.com/SevenOutman/console-badge/issues"
+    "url": "https://github.com/SevenOutman/csbg/issues"
   },
-  "repository": "github:SevenOutman/console-badge",
+  "repository": "github:SevenOutman/csbg",
   "license": "MIT",
   "author": "Doma <leishenghao@126.com>",
   "sideEffects": [
