@@ -3,17 +3,21 @@ const labelStyles = `${commonStyles};border-radius:3px 0 0 3px;padding:4px 4px 4
 const messageStyles = `${commonStyles};border-radius: 0 3px 3px 0;padding:4px 6px 4px`
 const clearStyles = `background:unset;border-radius:unset;padding:unset`
 
-const createGradientStyles = (color: string) =>
-  `background:linear-gradient(180deg,${lightened(color)},${shaded(color)}`
+const createGradientStyles = (color: string) => {
+  const [r, g, b] = hex2Rgb(color)
+  return `background:linear-gradient(180deg,${lightened(r, g, b)},${shaded(
+    r,
+    g,
+    b,
+  )}`
+}
 
 /**
  * Add rgba(0, 0, 0, .1) to color
  *
  * @see https://poe.com/s/uZHSsLBVxxPXwMMTd0FD
  */
-function shaded(hexColor: string) {
-  const [r, g, b] = hex2Rgb(hexColor)
-
+function shaded(r: number, g: number, b: number) {
   const resultR = Math.round(0.9 * r)
   const resultG = Math.round(0.9 * g)
   const resultB = Math.round(0.9 * b)
@@ -25,9 +29,7 @@ function shaded(hexColor: string) {
  *
  * @see https://poe.com/s/uZHSsLBVxxPXwMMTd0FD
  */
-function lightened(hexColor: string) {
-  const [r, g, b] = hex2Rgb(hexColor)
-
+function lightened(r: number, g: number, b: number) {
   const resultR = Math.round(0.9 * r + 18.7)
   const resultG = Math.round(0.9 * g + 18.7)
   const resultB = Math.round(0.9 * b + 18.7)
