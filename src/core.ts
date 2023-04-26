@@ -1,7 +1,10 @@
-// Lightened #555
-const lightenedGray = "rgb(95,95,95)"
-// Shaded #555
-const shadedGray = "rgb(77,77,77)"
+const commonStyles = `font-family:Verdana,Geneva,DejaVu Sans,sans-serif;font-size:11px;line-height:12px;color:#fff;text-shadow:0 1px rgba(1,1,1,.3)`
+const labelStyles = `${commonStyles};border-radius:3px 0 0 3px;padding:4px 4px 4px 6px;background:linear-gradient(180deg,#5F5F5F,#4D4D4D)`
+const messageStyles = `${commonStyles};border-radius: 0 3px 3px 0;padding:4px 6px 4px`
+const clearStyles = `background:unset;border-radius:unset;padding:unset`
+
+const createGradientStyles = (color: string) =>
+  `background:linear-gradient(180deg,${lightened(color)},${shaded(color)}`
 
 /**
  * Add rgba(0, 0, 0, .1) to color
@@ -15,7 +18,7 @@ function shaded(hexColor: string) {
   const resultG = Math.round(0.9 * g)
   const resultB = Math.round(0.9 * b)
 
-  return `rgb(${resultR}, ${resultG}, ${resultB})`
+  return `rgb(${resultR},${resultG},${resultB})`
 }
 /**
  * Add rgba(187, 187, 187, .1) to color
@@ -29,7 +32,7 @@ function lightened(hexColor: string) {
   const resultG = Math.round(0.9 * g + 18.7)
   const resultB = Math.round(0.9 * b + 18.7)
 
-  return `rgb(${resultR}, ${resultG}, ${resultB})`
+  return `rgb(${resultR},${resultG},${resultB})`
 }
 
 /**
@@ -48,13 +51,9 @@ export function badge(
 ) {
   this.log(
     "\n" + "%c" + label + "%c" + message + "%c" + "\n",
-    `font-family:Verdana,Geneva,DejaVu Sans,sans-serif;font-size:11px;line-height:12px;color:#fff;text-shadow:0 1px rgba(1,1,1,.3);background:linear-gradient(to bottom,${lightenedGray},${shadedGray});border-top-left-radius:3px;border-bottom-left-radius:3px;padding:4px;padding-left:6px`,
-    `font-family:Verdana,Geneva,DejaVu Sans,sans-serif;font-size:11px;line-height:12px;color:#fff;text-shadow:0 1px rgba(1,1,1,.3);background: linear-gradient(to bottom,${lightened(
-      color,
-    )},${shaded(
-      color,
-    )});border-top-right-radius:3px;border-bottom-right-radius:3px;padding:4px;padding-right:6px`,
-    "background:unset;border-radius:unset;padding:unset",
+    labelStyles,
+    `${messageStyles};${createGradientStyles(color)}`,
+    clearStyles,
   )
 }
 
@@ -74,13 +73,9 @@ export function badges(
     const color = badge[2] ?? "#97ca00"
 
     logArgs.push(
-      `font-family:Verdana,Geneva,DejaVu Sans,sans-serif;font-size:11px;line-height:12px;color:#fff;text-shadow:0 1px rgba(1,1,1,.3);background:linear-gradient(to bottom,${lightenedGray},${shadedGray});border-top-left-radius:3px;border-bottom-left-radius:3px;padding:4px;padding-left:6px`,
-      `font-family:Verdana,Geneva,DejaVu Sans,sans-serif;font-size:11px;line-height:12px;color:#fff;text-shadow:0 1px rgba(1,1,1,.3);background:linear-gradient(to bottom,${lightened(
-        color,
-      )},${shaded(
-        color,
-      )});border-top-right-radius:3px;border-bottom-right-radius:3px;padding:4px;padding-right:6px`,
-      "background:unset;border-radius:unset;padding:unset",
+      labelStyles,
+      `${messageStyles};${createGradientStyles(color)}`,
+      clearStyles,
     )
   }
   this.log(...logArgs)
